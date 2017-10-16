@@ -1,0 +1,70 @@
+namespace = trait_rework
+
+#self modification
+pop_event = {
+	id = trait_rework.1
+	is_triggered_only = yes
+	title = trait_rework.1.name
+	hide_window = yes
+	
+	trigger = {
+		is_being_purged = no
+		#is_colony_pop = yes
+		is_robot_pop  = no
+		planet = {
+			has_owner = yes
+		}
+		
+		#pop_has_trait 
+		
+	}
+	
+	mean_time_to_happen = {
+		months = 1
+	}
+	
+	immediate = {
+		planet = {
+			owner = { set_country_flag = pop_modification } 
+			set_planet_flag = pop_modification
+		}
+	
+		set_pop_flag = modified_pop_1
+	
+	}
+	
+	option = {
+		name = "OK"
+	}
+}
+
+planet_event = {
+	id = trait_rework.2
+	hide_window = yes
+
+	trigger = { 
+		#always = no 
+	}
+
+	immediate = {
+		every_tile = {
+			if = {
+				limit = {
+					has_grown_pop = yes
+					any_pop = {
+						
+					}
+				}
+				any_pop = {
+					
+				}
+			}
+		}
+		
+		random_pop = {
+			species = owner_main_species
+			limit = { planet = { is_same_value = root } }
+			pop_event = { id = trait_rework.1 }
+		}
+	}
+}

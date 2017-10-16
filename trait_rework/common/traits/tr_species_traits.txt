@@ -1,0 +1,23 @@
+trait_mineral_focus = {
+	cost = 0
+	initial = yes
+	randomized = no
+	allowed_archetypes = { BIOLOGICAL }
+	opposites = { "trait_food_focus" "trait_energy_focus" }
+}
+
+trait_energy_focus = {
+	cost = 0
+	initial = no
+	randomized = no
+	allowed_archetypes = { BIOLOGICAL }
+	opposites = { "trait_food_focus" "trait_mineral_focus" }
+}
+
+trait_food_focus = {
+	cost = 0
+	initial = no
+	randomized = no
+	allowed_archetypes = { BIOLOGICAL }
+	opposites = { "trait_mineral_focus" "trait_energy_focus" }
+}

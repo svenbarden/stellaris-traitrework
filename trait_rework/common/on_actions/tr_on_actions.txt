@@ -1,0 +1,7 @@
+# scope: planet
+# from: country
+#on_monthly_pulse = {
+#	events = {
+#		trait_rework.2
+#	}
+#}
