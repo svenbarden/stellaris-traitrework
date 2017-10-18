@@ -1,0 +1,26 @@
+console: trigger_docs
+#		pop_produces_resource = {
+			#		    type = minerals
+			#		    amount < 5
+			#		}
+
+			#add_building_construction = building_basic_science_lab_1
+                        #this = {
+                         #   pop = {
+                          #      pop_event = {
+                           #         id = trait_rework.1
+                            #    }
+                            #}
+                        #}
+
+
+
+
+
+
+
+
+
+
+
+

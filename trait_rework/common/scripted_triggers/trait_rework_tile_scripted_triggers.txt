@@ -1,0 +1,27 @@
+traitrework_trigger_tile_minerals_target = {
+    or = {
+        and = {
+            has_building = no
+            traitrework_trigger_tile_has_minerals_most = yes
+        }
+       # building = {
+       #     produces_resources = {
+        #        minerals > 0
+         #   }
+        #}
+    }
+}
+
+traitrework_trigger_tile_energy_target = {
+    or = {
+        and = {
+            has_building = no
+            traitrework_trigger_tile_has_energy_most = yes
+        }
+       # building = {
+      #      produces_resources = {
+        #        energy > 0
+          #  }
+      #  }
+    }
+}

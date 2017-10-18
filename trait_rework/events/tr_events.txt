@@ -1,12 +1,29 @@
 namespace = trait_rework
 
-#self modification
-pop_event = {
+event = {
 	id = trait_rework.1
-	is_triggered_only = yes
-	title = trait_rework.1.name
 	hide_window = yes
-	
+	is_triggered_only = yes
+
+	immediate = {
+		every_planet = {
+		    limit = {
+		        has_owner = yes
+		        owner = {
+		            is_ai = no
+		        }
+		    }
+			planet_event = { id = trait_rework.2 }
+		}
+	}
+}
+
+#self modification to minerals species
+pop_event = {
+	id = trait_rework.3
+	is_triggered_only = yes
+	hide_window = yes
+
 	trigger = {
 		is_being_purged = no
 		#is_colony_pop = yes
@@ -14,57 +31,61 @@ pop_event = {
 		planet = {
 			has_owner = yes
 		}
-		
-		#pop_has_trait 
-		
+		NOT = {
+		    pop_has_trait = trait_mineral_focus
+		}
 	}
-	
-	mean_time_to_happen = {
-		months = 1
-	}
-	
+
 	immediate = {
+	    log = "Trigger traitRework pop minerals event [num_species] for pop [planet]"
 		planet = {
 			owner = { set_country_flag = pop_modification } 
 			set_planet_flag = pop_modification
 		}
-	
-		set_pop_flag = modified_pop_1
-	
-	}
-	
-	option = {
-		name = "OK"
+		set_pop_flag = trait_rework_modified_pop_1
+
+        owner = {
+            every_owned_pop_species = {
+                #count = all
+               # limit = {
+                   # has_trait = trait_mineral_focus
+              #  }
+                root = {
+                    change_species = this
+                    set_pop_flag = trait_rework_modified_pop_2
+                }
+            }
+        }
 	}
 }
+
+#country.. num_unique_species
 
 planet_event = {
 	id = trait_rework.2
 	hide_window = yes
+	is_triggered_only = yes
 
 	trigger = { 
-		#always = no 
+		exists = owner
 	}
 
 	immediate = {
+	    log = "Trigger traitRework planet event"
 		every_tile = {
-			if = {
-				limit = {
-					has_grown_pop = yes
-					any_pop = {
-						
-					}
-				}
-				any_pop = {
-					
+			limit = {
+			    #traitrework_trigger_tile_minerals_target = yes
+				has_grown_pop = yes
+				pop = {
+				   is_being_purged = no
+				   planet = { is_same_value = root }
 				}
 			}
+			pop = {
+			    pop_event = {
+			        id = trait_rework.3
+			    }
+			}
 		}
-		
-		random_pop = {
-			species = owner_main_species
-			limit = { planet = { is_same_value = root } }
-			pop_event = { id = trait_rework.1 }
-		}
-	}
+    }
 }

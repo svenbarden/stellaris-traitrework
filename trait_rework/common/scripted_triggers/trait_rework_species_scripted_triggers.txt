@@ -1,0 +1,14 @@
+traitrework_trigger_species_has_better_habitability = {
+    from = {
+        and = {
+            habitability = {
+                who = this
+                value >= 0.2
+            }
+            habitability = {
+                who = root
+                value < 0.2
+            }
+        }
+    }
+}
